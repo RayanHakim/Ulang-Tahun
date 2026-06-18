@@ -1,0 +1,433 @@
+:root {
+    --bg-base: #121212;
+    --text-main: #ffffff;
+    --accent-1: #1DB954; /* Hijau Spotify */
+    --accent-2: #ff4d4d;
+    --accent-3: #8a2be2;
+    --accent-4: #ffb703;
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Montserrat', sans-serif; 
+}
+
+body { 
+    background-color: var(--bg-base); 
+    color: var(--text-main); 
+    overflow: hidden; 
+    height: 100vh; 
+    width: 100vw;
+}
+
+/* CONTAINER LAYAR UTAMA */
+.screen { 
+    display: none; 
+    height: 100vh; 
+    width: 100vw; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    z-index: 10; 
+}
+
+.screen.active { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+/* ANIMASI BACKGROUND GERAK (BLOBS GEOMETRI) */
+.bg-shapes {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    z-index: 1; 
+    overflow: hidden; 
+    filter: blur(60px); 
+    opacity: 0.6;
+}
+
+.shape { 
+    position: absolute; 
+    border-radius: 50%; 
+    animation: float 15s infinite alternate ease-in-out; 
+}
+
+.shape-1 { 
+    width: 400px; 
+    height: 400px; 
+    background: var(--accent-3); 
+    top: -10%; 
+    left: -10%; 
+    animation-duration: 20s; 
+}
+
+.shape-2 { 
+    width: 500px; 
+    height: 500px; 
+    background: var(--accent-1); 
+    bottom: -20%; 
+    right: -10%; 
+    animation-duration: 25s; 
+    animation-direction: reverse; 
+}
+
+.shape-3 { 
+    width: 300px; 
+    height: 300px; 
+    background: var(--accent-2); 
+    top: 40%; 
+    left: 40%; 
+    animation-duration: 18s; 
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    50% { transform: translate(100px, 50px) scale(1.2) rotate(180deg); }
+    100% { transform: translate(-50px, 150px) scale(0.8) rotate(360deg); }
+}
+
+/* HALAMAN INPUT (CARD DATA) */
+.card-input {
+    background: rgba(0, 0, 0, 0.75); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3rem; 
+    border-radius: 16px; 
+    width: 90%; 
+    max-width: 400px; 
+    z-index: 20;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.brand-badge { 
+    font-weight: 900; 
+    font-size: 0.7rem; 
+    letter-spacing: 4px; 
+    color: var(--accent-1); 
+    margin-bottom: 1rem; 
+}
+
+.card-input h1 { 
+    font-weight: 900; 
+    font-size: 2.2rem; 
+    text-transform: uppercase; 
+    line-height: 1; 
+    margin-bottom: 0.5rem;
+}
+
+.card-input p { 
+    font-size: 0.85rem; 
+    color: #aaa; 
+    margin-bottom: 2rem; 
+}
+
+/* ELEMEN FORM INPUT & DROPDOWN */
+.form-group { 
+    margin-bottom: 1.5rem; 
+}
+
+.form-group label { 
+    display: block; 
+    font-size: 0.7rem; 
+    font-weight: 700; 
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+    margin-bottom: 0.5rem; 
+    color: #bbb;
+}
+
+.form-group input, 
+.form-group select { 
+    width: 100%; 
+    padding: 1rem; 
+    background: rgba(255, 255, 255, 0.05); 
+    border: 2px solid rgba(255, 255, 255, 0.2); 
+    color: white; 
+    font-size: 1.1rem; 
+    font-weight: 700; 
+    border-radius: 8px; 
+    transition: border-color 0.3s, background-color 0.3s; 
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* KHUSUS STYLING DROPDOWN SELECT */
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    /* Menyuntikkan Icon Panah Kustom (SVG) Putih */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    padding-right: 3rem; /* Memberi ruang agar teks tidak menabrak panah */
+}
+
+/* Khusus untuk list pilihan dropdown yang terbuka */
+.form-group select option {
+    background-color: #1a1a1a; /* Background gelap saat list terbuka */
+    color: #ffffff;
+    padding: 1rem;
+    font-weight: 700;
+}
+
+.form-group input:focus, 
+.form-group select:focus { 
+    border-color: var(--accent-1); 
+    background: rgba(255, 255, 255, 0.1);
+    outline: none; 
+}
+
+/* DATE PICKER CALENDAR ICON (Opsional agar kalender juga bagus) */
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.btn-start { 
+    background: white; 
+    color: black; 
+    font-weight: 900; 
+    letter-spacing: 2px; 
+    border: none; 
+    padding: 1.2rem; 
+    border-radius: 50px; 
+    cursor: pointer; 
+    width: 100%; 
+    font-size: 1rem; 
+    margin-top: 1rem; 
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-start:hover {
+    transform: scale(1.02);
+    background-color: #f0f0f0;
+}
+
+/* AREA SLIDESHOW WRAPPED */
+#slide-container { 
+    width: 100%; 
+    height: 100%; 
+    max-width: 450px; 
+    position: relative; 
+    z-index: 20; 
+    background: rgba(0,0,0,0.2); 
+}
+
+.slide {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    padding: 4rem 2.5rem; 
+    opacity: 0; 
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    box-sizing: border-box;
+}
+
+.slide.active { 
+    opacity: 1; 
+    pointer-events: auto; 
+}
+
+/* SINTAKS TIPOGRAFI BRUTALISM */
+.slide-category { 
+    font-size: 0.75rem; 
+    font-weight: 900; 
+    letter-spacing: 3px; 
+    text-transform: uppercase; 
+    margin-bottom: auto; 
+    color: rgba(255,255,255,0.6); 
+}
+
+.slide-content { 
+    margin: auto 0; 
+}
+
+.giant-text { 
+    font-size: 3.5rem; 
+    font-weight: 900; 
+    line-height: 1; 
+    text-transform: uppercase; 
+    margin-bottom: 1rem; 
+    letter-spacing: -2px; 
+}
+
+.giant-number { 
+    font-size: 4.5rem; 
+    font-weight: 900; 
+    line-height: 0.9; 
+    color: var(--accent-1); 
+    margin-bottom: 0.5rem; 
+    letter-spacing: -3px; 
+}
+
+.desc-text { 
+    font-size: 1.1rem; 
+    font-weight: 400; 
+    line-height: 1.4; 
+    color: #e0e0e0; 
+}
+
+/* DETAIL BOX SUB-DATA */
+.stat-box { 
+    border-top: 2px solid rgba(255,255,255,0.2); 
+    padding-top: 1rem; 
+    margin-top: 1.5rem; 
+}
+
+.stat-label { 
+    font-size: 0.7rem; 
+    font-weight: 900; 
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+    color: #888; 
+}
+
+.stat-val { 
+    font-size: 2rem; 
+    font-weight: 900; 
+}
+
+/* SUMMARY KARTU AKHIR (SLIDE-8) */
+.summary-card { 
+    background: var(--accent-3); 
+    padding: 2rem; 
+    border-radius: 12px; 
+    transform: rotate(-2deg); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
+    transition: background-color 0.5s ease;
+}
+
+.summary-card h2 { 
+    font-size: 2.5rem; 
+    font-weight: 900; 
+    text-transform: uppercase; 
+    line-height: 1; 
+    margin-bottom: 1.5rem; 
+    color: #fff; 
+    letter-spacing: -1px;
+}
+
+.summary-row { 
+    display: flex; 
+    justify-content: space-between; 
+    border-bottom: 1px solid rgba(255,255,255,0.2); 
+    padding: 0.8rem 0; 
+}
+
+.summary-label { 
+    font-weight: 700; 
+    font-size: 0.8rem; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.summary-value { 
+    font-weight: 900; 
+    font-size: 0.9rem; 
+    text-transform: uppercase; 
+}
+
+/* NAVIGASI OVERLAY TAP (KIRI & KANAN) */
+.nav-overlay { 
+    position: absolute; 
+    top: 0; 
+    height: 100%; 
+    width: 35%; 
+    z-index: 30; 
+    cursor: pointer; 
+}
+.nav-overlay.left { left: 0; }
+.nav-overlay.right { right: 0; }
+
+/* TOMBOL ULANGI DI BAGIAN BAWAH */
+.btn-close { 
+    position: absolute; 
+    bottom: 30px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    z-index: 40; 
+    background: transparent; 
+    border: 2px solid rgba(255,255,255,0.3); 
+    padding: 0.8rem 2rem; 
+    border-radius: 50px; 
+    color: white; 
+    cursor: pointer; 
+    font-weight: 900; 
+    letter-spacing: 2px; 
+    font-size: 0.7rem; 
+    transition: background-color 0.3s, border-color 0.3s; 
+}
+
+.btn-close:hover { 
+    background: rgba(255,255,255,0.1); 
+    border-color: white;
+}
+
+/* PROGRESS BAR DI SISI ATAS STORY */
+.progress-container { 
+    position: absolute; 
+    top: 20px; 
+    left: 5%; 
+    width: 90%; 
+    display: flex; 
+    gap: 4px; 
+    z-index: 40; 
+}
+
+.progress-bar { 
+    height: 4px; 
+    background: rgba(255,255,255,0.2); 
+    flex: 1; 
+    border-radius: 2px; 
+    overflow: hidden; 
+}
+
+.progress-fill { 
+    height: 100%; 
+    width: 0%; 
+    background: #fff; 
+}
+
+/* ANIMASI TRANSISI MASUK (FADE IN SLIDE UP) */
+.slide.active .animate-slide-up { 
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+}
+
+@keyframes slideUp { 
+    from { 
+        opacity: 0; 
+        transform: translateY(40px); 
+    } 
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+}
+
+/* DETEKSI LAYAR LAPTOP / MONITOR DESKTOP */
+@media (min-width: 768px) {
+    #wrapped-screen { 
+        background: #0c0c0c; 
+    }
+    #slide-container { 
+        height: 85vh; 
+        border-radius: 20px; 
+        box-shadow: 0 30px 100px rgba(0,0,0,0.8); 
+        border: 1px solid rgba(255,255,255,0.1); 
+    }
+}

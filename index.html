@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Birthday Wrapped</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Animasi Background Bergerak -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- HALAMAN INPUT -->
+    <div id="input-screen" class="screen active">
+        <div class="card-input">
+            <div class="brand-badge">WRAPPED</div>
+            <h1>A Year In Review</h1>
+            <p>Masukkan data untuk memulai kalkulasi perjalananmu.</p>
+            
+            <form id="wrapped-form">
+                <div class="form-group">
+                    <label>Nama Depan / Panggilan</label>
+                    <input type="text" id="nama" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Tanggal Lahir</label>
+                    <input type="date" id="tanggal-lahir" required>
+                </div>
+                <div class="form-group">
+    <label>Status / Peran Saat Ini</label>
+    <select id="pekerjaan" required>
+        <option value="" disabled selected hidden>Pilih peranmu saat ini...</option>
+        <option value="Pelajar">Pelajar</option>
+        <option value="Mahasiswa">Mahasiswa</option>
+        <option value="Ibu Rumah Tangga">Ibu Rumah Tangga</option>
+        <option value="Software Engineer">Software Engineer / IT</option>
+        <option value="Desainer atau Seniman">Desainer / Seniman</option>
+        <option value="Pegawai Negeri">Pegawai Negeri / ASN</option>
+        <option value="Karyawan Swasta">Karyawan Swasta</option>
+        <option value="Tenaga Medis">Tenaga Medis</option>
+        <option value="Guru atau Dosen">Guru / Dosen</option>
+        <option value="Wiraswasta">Wiraswasta / Pengusaha</option>
+        <option value="Freelancer">Freelancer</option>
+        <option value="Pencari Kerja">Pencari Kerja / Fresh Grad</option>
+    </select>
+</div>
+                <button type="submit" class="btn-start">MULAI</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- HALAMAN WRAPPED SLIDESHOW -->
+    <div id="wrapped-screen" class="screen">
+        <div class="progress-container" id="progress-container"></div>
+        
+        <div id="slide-container"></div>
+
+        <div class="nav-overlay left" onclick="prevSlide()"></div>
+        <div class="nav-overlay right" onclick="nextSlide()"></div>
+        
+        <button class="btn-close" onclick="resetWrapped()">ULANGI</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
